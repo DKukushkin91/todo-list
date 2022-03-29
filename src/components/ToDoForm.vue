@@ -1,7 +1,7 @@
 <template>
   <form class="form" action="" @submit.prevent>
     <my-input class="input" type="text" v-model="item.title" />
-    <button class="btn" @click="addTask">Add new task</button>
+    <my-button class="btn" @click="addTask">Add new task</my-button>
   </form>
 </template>
 
@@ -13,6 +13,7 @@ export default {
         id: Math.random(),
         edit: true,
         title: "",
+        checked: false,
       },
     };
   },
@@ -27,6 +28,7 @@ export default {
         id: Math.random(),
         edit: true,
         title: "",
+        checked: false,
       };
     },
   },

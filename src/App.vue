@@ -1,9 +1,16 @@
 <template>
   <main class="main">
     <div class="main__container">
-      <item-form @create="createItem" />
+      <to-do-form @create="createItem" />
       <div class="main__wrapper">
-        <to-do-list :items="items" @remove="removeItem" />
+        <to-do-fieldset
+          :items="items"
+          v-for="fieldset in fieldsets"
+          :fieldset="fieldset"
+          :key="fieldset.id"
+          @remove="removeItem"
+          @check="doCheck"
+        />
         <!-- <fieldset class="main__fieldset">
           <legend class="main__legend">Done</legend>
           <ul class="main__list main__list--complete">
@@ -37,25 +44,45 @@
 </template>
 
 <script>
-import ItemForm from "@/components/ItemForm.vue";
-import ToDoList from "@/components/ToDoList.vue";
+import ToDoForm from "@/components/ToDoForm.vue";
+import ToDoFieldset from "@/components/ToDoFieldset.vue";
 
 export default {
   components: {
-    ItemForm,
-    ToDoList,
+    ToDoForm,
+    ToDoFieldset,
   },
   data() {
     return {
       items: [],
+      checkedItems: [],
+      fieldsets: [
+        {
+          id: Math.random(),
+          title: "ToDo",
+        },
+        {
+          id: Math.random(),
+          title: "Done",
+        },
+      ],
     };
   },
   methods: {
     createItem(item) {
       this.items.push(item);
     },
+
     removeItem(item) {
       this.items = this.items.filter((i) => i.id !== item.id);
+    },
+
+    doCheck(item) {
+      if (!item.checked) {
+        item.checked = true;
+      } else {
+        item.checked = false;
+      }
     },
   },
 };
