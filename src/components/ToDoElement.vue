@@ -1,8 +1,7 @@
 <template>
   <li class="main__item">
     <my-check-box
-      @change="$emit('check', item)"
-      v-model="checked"
+      v-model="newItem.checked"
       class="main__checkbox"
       type="checkbox"
     />
@@ -28,25 +27,11 @@ export default {
       required: true,
     },
   },
+
   data() {
     return {
-      newItem: {},
+      newItem: { ...this.item },
     };
-  },
-
-  watch: {
-    item(newValue) {
-      if (
-        Object.keys(this.newItem).length === 0 &&
-        this.newItem.constructor === Object
-      ) {
-        this.newItem = newValue;
-      }
-    },
-  },
-
-  created() {
-    this.newItem = { ...this.item };
   },
 
   methods: {

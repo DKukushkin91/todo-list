@@ -9,7 +9,7 @@
           :fieldset="fieldset"
           :key="fieldset.id"
           @remove="removeItem"
-          @check="doCheck"
+          @change="doCheck"
         />
         <!-- <fieldset class="main__fieldset">
           <legend class="main__legend">Done</legend>

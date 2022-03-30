@@ -5,14 +5,14 @@
       v-if="fieldset.title === 'ToDo'"
       :items="items"
       @remove="$emit('remove', ...items)"
-      @check="$emit('check', ...items)"
+      @change="$emit('check', ...items)"
     />
-    <!-- <to-do-list
+    <to-do-list
       v-else
       :items="checkItems"
       @remove="$emit('remove', ...items)"
-      @check="$emit('check', ...items)"
-    /> -->
+      @change="$emit('check', ...items)"
+    />
   </fieldset>
 </template>
 

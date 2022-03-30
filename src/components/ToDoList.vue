@@ -2,10 +2,10 @@
   <ul class="main__list">
     <to-do-element
       v-for="item in items"
-      :item="item"
       :key="item.id"
+      :item="item"
       @remove="$emit('remove', item)"
-      @check="$emit('check', item)"
+      @change="$emit('check', item)"
     />
   </ul>
 </template>
