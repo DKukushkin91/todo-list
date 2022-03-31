@@ -4,6 +4,7 @@
       v-model="newItem.checked"
       class="main__checkbox"
       type="checkbox"
+      :checked="newItem.checked"
       @change="$emit('filtredItems', checkHandler(item))"
     />
     <my-input
@@ -14,7 +15,11 @@
       ref="myInput"
     />
     <my-button class="main__btn" @click="editTask(item)">Edit</my-button>
-    <my-button class="main__btn" @click="$emit('remove', item)">
+    <my-button
+      class="main__btn"
+      :key="Math.random()"
+      @click="$emit('remove', item)"
+    >
       Remove
     </my-button>
   </li>

@@ -1,17 +1,5 @@
 <template>
-  <input
-    class="main__checkbox"
-    :id="id"
-    v-model="computedValue"
-    type="checkbox"
-    :name="name"
-    :disabled="disabled"
-    :indeterminate="indeterminate"
-    :true-value="trueValue"
-    :false-value="falseValue"
-    :value="value"
-    :checked="checked"
-  />
+  <input class="main__checkbox" v-model="computedValue" type="checkbox" />
 </template>
 
 <script>
@@ -25,21 +13,6 @@ export default {
       Number,
       Array,
     },
-    value: [String, Number, Array],
-    trueValue: {
-      type: [Boolean, String, Number],
-      default: true,
-    },
-    falseValue: {
-      type: [Boolean, String, Number],
-      default: false,
-    },
-    checked: Boolean,
-    id: String,
-    name: String,
-    round: Boolean,
-    disabled: Boolean,
-    indeterminate: Boolean,
   },
 
   emmits: ["update:modelValue"],

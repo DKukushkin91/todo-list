@@ -4,13 +4,17 @@
     <to-do-list
       v-if="fieldset.title === 'ToDo'"
       :items="items"
+      :key="Math.random()"
       @remove="$emit('remove', ...items)"
       @filtredItems="$emit('filtredItems', ...items)"
     />
     <to-do-list
+      class="main__list--complete"
       v-else
       :items="checkedItems"
-      @remove="$emit('remove', ...items)"
+      :key="Math.random()"
+      @remove="$emit('remove', ...checkedItems)"
+      @filtredItems="$emit('filtredItems', ...checkedItems)"
     />
   </fieldset>
 </template>

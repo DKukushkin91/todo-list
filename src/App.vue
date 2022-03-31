@@ -49,10 +49,19 @@ export default {
 
     removeItem(item) {
       this.items = this.items.filter((i) => i.id !== item.id);
+      this.checkedItems = this.checkedItems.filter((i) => i.id !== item.id);
     },
 
     filtredItems(element) {
-      console.log(element);
+      let index = this.items.indexOf(element);
+      const indexCheck = this.checkedItems.indexOf(element);
+      const getCheck = (e) => e.splice(element.index, 1);
+
+      if (element.checked === true) {
+        this.checkedItems.push(...getCheck(this.items, index));
+      } else {
+        this.items.push(...getCheck(this.checkedItems, indexCheck));
+      }
     },
   },
 };
