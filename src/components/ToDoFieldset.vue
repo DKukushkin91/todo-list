@@ -5,13 +5,12 @@
       v-if="fieldset.title === 'ToDo'"
       :items="items"
       @remove="$emit('remove', ...items)"
-      @change="$emit('check', ...items)"
+      @filtredItems="$emit('filtredItems', ...items)"
     />
     <to-do-list
       v-else
-      :items="checkItems"
+      :items="checkedItems"
       @remove="$emit('remove', ...items)"
-      @change="$emit('check', ...items)"
     />
   </fieldset>
 </template>
@@ -27,6 +26,10 @@ export default {
       required: true,
     },
     items: {
+      type: Array,
+      required: true,
+    },
+    checkedItems: {
       type: Array,
       required: true,
     },

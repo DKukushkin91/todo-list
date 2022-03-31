@@ -1,63 +1,60 @@
 <template>
   <input
     class="main__checkbox"
-    :checked="shouldBeChecked"
-    :value="value"
-    @change="updateInput"
+    :id="id"
+    v-model="computedValue"
     type="checkbox"
+    :name="name"
+    :disabled="disabled"
+    :indeterminate="indeterminate"
+    :true-value="trueValue"
+    :false-value="falseValue"
+    :value="value"
+    :checked="checked"
   />
 </template>
 
 <script>
+import { computed } from "@vue/runtime-core";
 export default {
   name: "my-check-box",
-  model: {
-    prop: "moduleValue",
-    event: "change",
-  },
-
   props: {
-    value: {
-      type: String,
+    moduleValue: {
+      Boolean,
+      String,
+      Number,
+      Array,
     },
-    modelValue: {
-      default: false,
-    },
+    value: [String, Number, Array],
     trueValue: {
+      type: [Boolean, String, Number],
       default: true,
     },
     falseValue: {
+      type: [Boolean, String, Number],
       default: false,
     },
+    checked: Boolean,
+    id: String,
+    name: String,
+    round: Boolean,
+    disabled: Boolean,
+    indeterminate: Boolean,
   },
 
-  computed: {
-    shouldBeChecked() {
-      if (this.modelValue instanceof Array) {
-        return this.modelValue.includes(this.value);
-      }
-      return this.modelValue === this.trueValue;
-    },
-  },
+  emmits: ["update:modelValue"],
 
-  methods: {
-    updateInput(event) {
-      let isChecked = event.target.checked;
+  setup: (props, { emit }) => {
+    const computedValue = computed({
+      get() {
+        return props.moduleValue;
+      },
+      set(value) {
+        emit("update:moduleValue", value);
+      },
+    });
 
-      if (this.modelValue instanceof Array) {
-        let newValue = [...this.modelValue];
-
-        if (isChecked) {
-          newValue.push(this.value);
-        } else {
-          newValue.splice(newValue.indexOf(this.value), 1);
-        }
-
-        this.$emit("change", newValue);
-      } else {
-        this.$emit("change", isChecked ? this.trueValue : this.falseValue);
-      }
-    },
+    return { computedValue };
   },
 };
 </script>

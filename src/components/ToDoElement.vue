@@ -4,6 +4,7 @@
       v-model="newItem.checked"
       class="main__checkbox"
       type="checkbox"
+      @change="$emit('filtredItems', checkHandler(item))"
     />
     <my-input
       class="main__input-item"
@@ -23,7 +24,7 @@
 export default {
   props: {
     item: {
-      type: Object,
+      type: Array,
       required: true,
     },
   },
@@ -37,7 +38,12 @@ export default {
   methods: {
     editTask(item) {
       item.edit = false;
+      this.newItem.edit = item.edit;
       this.$refs.myInput.$el.focus();
+    },
+
+    checkHandler(item) {
+      return (item.checked = this.newItem.checked);
     },
   },
 };

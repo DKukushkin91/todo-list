@@ -1,11 +1,11 @@
 <template>
   <ul class="main__list">
     <to-do-element
-      v-for="item in items"
+      v-for="item in checkedItems || items"
       :key="item.id"
       :item="item"
       @remove="$emit('remove', item)"
-      @change="$emit('check', item)"
+      @filtredItems="$emit('filtredItems', item)"
     />
   </ul>
 </template>
@@ -20,6 +20,10 @@ export default {
 
   props: {
     items: {
+      type: Array,
+      required: true,
+    },
+    checkedItems: {
       type: Array,
       required: true,
     },

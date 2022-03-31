@@ -4,40 +4,14 @@
       <to-do-form @create="createItem" />
       <div class="main__wrapper">
         <to-do-fieldset
-          :items="items"
           v-for="fieldset in fieldsets"
-          :fieldset="fieldset"
           :key="fieldset.id"
+          :fieldset="fieldset"
+          :items="items"
+          :checkedItems="checkedItems"
           @remove="removeItem"
-          @change="doCheck"
+          @filtredItems="filtredItems"
         />
-        <!-- <fieldset class="main__fieldset">
-          <legend class="main__legend">Done</legend>
-          <ul class="main__list main__list--complete">
-            <li
-              class="main__item"
-              v-for="(item, index) in completeList"
-              :key="item.id"
-            >
-              <input
-                class="main__checkbox"
-                type="checkbox"
-                @change="doCheck(index, 'checked')"
-                checked
-              />
-              <input
-                class="main__input-item"
-                type="text"
-                v-bind:value="item.title"
-                v-bind:readonly="item.edit"
-              />
-              <button class="main__btn" @click="editTask(item)">Edit</button>
-              <button class="main__btn" @click="removeTask(index, 'checked')">
-                Remove
-              </button>
-            </li>
-          </ul>
-        </fieldset> -->
       </div>
     </div>
   </main>
@@ -77,12 +51,8 @@ export default {
       this.items = this.items.filter((i) => i.id !== item.id);
     },
 
-    doCheck(item) {
-      if (!item.checked) {
-        item.checked = true;
-      } else {
-        item.checked = false;
-      }
+    filtredItems(element) {
+      console.log(element);
     },
   },
 };
