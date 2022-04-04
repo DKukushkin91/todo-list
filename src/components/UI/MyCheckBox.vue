@@ -1,5 +1,5 @@
 <template>
-  <input class="main__checkbox" v-model="computedValue" type="checkbox" />
+  <input class="checkbox" v-model="computedValue" type="checkbox" />
 </template>
 
 <script>

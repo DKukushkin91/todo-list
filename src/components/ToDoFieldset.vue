@@ -1,7 +1,8 @@
 <template>
-  <fieldset class="main__fieldset">
-    <legend class="main__legend">{{ fieldset.title }}</legend>
+  <fieldset class="fieldset">
+    <legend class="legend">{{ fieldset.title }}</legend>
     <to-do-list
+      class="list"
       v-if="fieldset.title === 'ToDo'"
       :items="items"
       :key="Math.random()"
@@ -9,7 +10,7 @@
       @filtredItems="$emit('filtredItems', ...items)"
     />
     <to-do-list
-      class="main__list--complete"
+      class="list--complete"
       v-else
       :items="checkedItems"
       :key="Math.random()"
@@ -41,4 +42,31 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.fieldset {
+  width: 50%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-top: 1px solid #9d9da9;
+}
+
+.fieldset:not(:last-child) {
+  margin-right: 10px;
+}
+
+.legend {
+  font-family: var(--ff);
+  padding: 0 10px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+</style>

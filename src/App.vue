@@ -67,4 +67,32 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+:root {
+  --ff: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.main {
+  width: 100%;
+}
+
+.main__container {
+  width: 100%;
+  max-width: 900px;
+  padding: 0 40px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.main__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+</style>

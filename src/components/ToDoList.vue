@@ -1,5 +1,5 @@
 <template>
-  <ul class="main__list">
+  <ul class="list">
     <to-do-element
       v-for="item in items"
       :key="item.id"

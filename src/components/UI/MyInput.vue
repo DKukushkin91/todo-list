@@ -2,7 +2,7 @@
   <input
     :value="modelValue"
     @input="updateInput"
-    class="main__input-item"
+    class="input-item"
     type="text"
   />
 </template>
